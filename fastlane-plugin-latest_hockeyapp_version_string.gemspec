@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'fastlane/plugin/latest_hockeyapp_version_number/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'fastlane-plugin-latest_hockeyapp_version_number'
+  spec.name          = 'fastlane-plugin-latest_hockeyapp_version_string'
   spec.version       = Fastlane::LatestHockeyappVersionNumber::VERSION
   spec.author        = %q{Travis Palmer}
   spec.email         = %q{palmer.travis@gmail.com}
