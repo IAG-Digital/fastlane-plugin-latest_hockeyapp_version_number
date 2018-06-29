@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'fastlane/plugin/latest_hockeyapp_version_number/version'
+require 'fastlane/plugin/latest_hockeyapp_version_string/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'fastlane-plugin-latest_hockeyapp_version_string'
-  spec.version       = Fastlane::LatestHockeyappVersionNumber::VERSION
+  spec.version       = Fastlane::LatestHockeyappVersionString::VERSION
   spec.author        = %q{Travis Palmer}
   spec.email         = %q{palmer.travis@gmail.com}
 
