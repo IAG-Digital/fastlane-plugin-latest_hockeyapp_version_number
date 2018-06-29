@@ -1,7 +1,7 @@
-require 'fastlane/plugin/latest_hockeyapp_version_number/version'
+require 'fastlane/plugin/latest_hockeyapp_version_string/version'
 
 module Fastlane
-  module LatestHockeyappVersionNumber
+  module LatestHockeyappVersionString
     # Return all .rb files inside the "actions" and "helper" directory
     def self.all_classes
       Dir[File.expand_path('**/{actions,helper}/*.rb', File.dirname(__FILE__))]
@@ -11,6 +11,6 @@ end
 
 # By default we want to import all available actions and helpers
 # A plugin can contain any number of actions and plugins
-Fastlane::LatestHockeyappVersionNumber.all_classes.each do |current|
+Fastlane::LatestHockeyappVersionString.all_classes.each do |current|
   require current
 end

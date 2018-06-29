@@ -1,6 +1,6 @@
 module Fastlane
   module Actions
-    class LatestHockeyappVersionNumberAction < Action
+    class LatestHockeyappVersionStringAction < Action
       def self.run(params)
         require 'hockeyapp'
 
@@ -14,25 +14,7 @@ module Fastlane
         app = apps.find { |a| a.title == params[:app_name] && a.platform == params[:platform] && a.release_type == params[:release_type].to_i }
         version = app.versions.first.version
        
-        version_array = version.split(".").map(&:to_i)
-        version_array[2] = version_array[2] + 1
-        next_version_number = version_array.join(".")
-
-        command = [
-          command_prefix,
-          "agvtool new-marketing-version #{next_version_number.to_s.strip}"
-        ].join(' ')
-
-        if Helper.test?
-          Actions.lane_context[SharedValues::VERSION_NUMBER] = command
-        else
-          Actions.sh(command)
-          Actions.lane_context[SharedValues::VERSION_NUMBER] = next_version_number
-        end
-
-        UI.message "Found version #{version}, and bumped to #{next_version_number.to_s.strip}"
-        
-        version, next_version_number
+        version
       end
 
       def self.description

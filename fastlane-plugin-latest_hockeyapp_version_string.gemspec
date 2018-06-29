@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = %q{palmer.travis@gmail.com}
 
   spec.summary       = %q{Easily fetch the most recent HockeyApp version number for your app}
-  spec.homepage      = "https://github.com/tpalmer/fastlane-plugin-latest_hockeyapp_version_number"
+  spec.homepage      = "https://github.com/IAG-Digital/fastlane-plugin-latest_hockeyapp_version_string"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
