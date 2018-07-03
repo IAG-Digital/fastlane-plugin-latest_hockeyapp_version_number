@@ -12,7 +12,7 @@ module Fastlane
         client = HockeyApp.build_client
         apps = client.get_apps
         app = apps.find { |a| a.title == params[:app_name] && a.platform == params[:platform] && a.release_type == params[:release_type].to_i }
-        version = app.versions.first.shortversion
+        version = app.versions[6].version
        
         version
       end
