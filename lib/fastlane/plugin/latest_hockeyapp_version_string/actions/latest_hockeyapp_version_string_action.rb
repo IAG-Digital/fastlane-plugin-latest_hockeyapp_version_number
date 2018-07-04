@@ -11,8 +11,20 @@ module Fastlane
         UI.message "Fetching latest version of #{params[:app_name]} from HockeyApp"
         client = HockeyApp.build_client
         apps = client.get_apps
-        app = apps.find { |a| a.title == params[:app_name] && a.platform == params[:platform] && a.release_type == params[:release_type].to_i }
-        version = app.versions[6].version
+
+		UI.message "Black listed versions #{params[:blacklistedVersions]}"
+		blacklistedVersionsArray = params[:blacklistedVersions].delete(' ').split(',')
+
+		app = apps.find { |a| a.title == params[:app_name] && a.platform == params[:platform] && a.release_type == params[:release_type].to_i }
+
+		# Mapping all available version
+		versions = app.versions.map{ |v| v.version }
+
+		# Ignoring black listed versions
+		filteredVersions = versions.select{ |i| !blacklistedVersionsArray.include?(i) }
+		
+		version = filteredVersions.first
+		UI.message "Previous Versions #{version}"
        
         version
       end
@@ -48,7 +60,10 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :platform,
                                        env_name: "FL_LATEST_HOCKEYAPP_VERSION_NUMBER_PLATFORM",
                                        description: "The platform to use when fetching the version number: iOS, Android, Mac OS, Windows Phone, Custom",
-                                       default_value: "iOS")
+                                       default_value: "iOS"),
+		 FastlaneCore::ConfigItem.new(key: :blacklistedVersions,
+                                       env_name: "FL_BLACKLISTED_HOCKEYAPP_VERSIONS",
+                                       description: "List of version numbers to skip when determining the latest version")
         ]
       end
 
